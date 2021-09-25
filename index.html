@@ -74,12 +74,22 @@
     <article id="post-STL常用容器和算法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/09/25/STL%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2021-09-25T15:32:52.504Z" itemprop="datePublished">2021-09-25</time>
+  <time class="dt-published" datetime="2021-09-25T15:38:55.000Z" itemprop="datePublished">2021-09-25</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/09/25/STL%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95/">STL常用容器和算法</a>
+    </h1>
+  
+
+      </header>
     
     <div class="e-content article-entry" itemprop="articleBody">
       
@@ -237,7 +247,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">myCompare</span><span class="params">(<span class="keyword">int</span> v1,<span class="keyword">int</span> v2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> v1 &gt; v2 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>例：自定义数据类型<code>Person</code>，按照年龄升序，身高降序排列，需要提供：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">comparePerson</span><span class="params">(Person &amp;p1,Person &amp;p2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p1.m_Age==p2.m_Age)</span><br><span class="line">        <span class="keyword">return</span> p1.m_Height&gt;p2.m_Height;</span><br><span class="line">    <span class="keyword">return</span> p1.m_Age&lt;p2.m_Age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">comparePerson</span><span class="params">(Person &amp;p1,Person &amp;p2)</span></span>&#123;	<span class="keyword">if</span>(p1.m_Age==p2.m_Age)        <span class="keyword">return</span> p1.m_Height&gt;p2.m_Height;    <span class="keyword">return</span> p1.m_Age&lt;p2.m_Age;&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -265,10 +275,10 @@
 <p><code>pair&lt;type,type&gt; p = make_pair(value1,value2); </code></p>
 <h4 id="set容器排序"><a href="#set容器排序" class="headerlink" title="set容器排序"></a>set容器排序</h4><p>set默认排序规则为从小到大，利用仿函数可以改变排序规则</p>
 <p>存放内置数据类型的情况：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//仿函数：</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myCompare</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> v1,<span class="keyword">int</span> v2)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> v1&gt;v2;</span><br><span class="line">    &#125;	</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//创建set容器</span></span><br><span class="line">set&lt;<span class="keyword">int</span>,myCompare&gt; st;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//仿函数：class myCompare&#123;public:    bool operator()(int v1,int v2)&#123;		return v1&gt;v2;    &#125;	&#125;;//创建set容器set&lt;int,myCompare&gt; st;</span></span><br></pre></td></tr></table></figure>
 
 <p>存放自定义数据类型的情况：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Person</span>(string name,<span class="keyword">int</span> age)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Name=name;</span><br><span class="line">        <span class="keyword">this</span>-&gt;m_Age=age;</span><br><span class="line">    &#125;</span><br><span class="line">    string m_Name;</span><br><span class="line">    <span class="keyword">int</span> m_Age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//对于自定义数据类型，set容器需要通过仿函数指定排序规则</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ComparePerson</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> Person&amp; p1,<span class="keyword">const</span> Person&amp; p2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p1.m_Age &gt; p2.m_Age;		<span class="comment">//降序排列</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">set&lt;Person,ComparePerson&gt; st;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>&#123;</span><span class="keyword">public</span>:    <span class="built_in">Person</span>(string name,<span class="keyword">int</span> age)    &#123;        <span class="keyword">this</span>-&gt;m_Name=name;        <span class="keyword">this</span>-&gt;m_Age=age;    &#125;    string m_Name;    <span class="keyword">int</span> m_Age;&#125;;<span class="comment">//对于自定义数据类型，set容器需要通过仿函数指定排序规则class ComparePerson&#123;public:    bool operator()(const Person&amp; p1,const Person&amp; p2)    &#123;        return p1.m_Age &gt; p2.m_Age;		//降序排列    &#125;&#125;;set&lt;Person,ComparePerson&gt; st;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -291,7 +301,7 @@
 <p><code>erase(beg,end);</code>     //删除区间[beg,end)的元素，返回下一个元素的迭代器</p>
 <p><code>erase(key);</code>     //删除容器中值为key的元素</p>
 <p>map内部重载了<code>[]</code>，可以用key通过中括号访问value</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;m;</span><br><span class="line">m.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">1</span>,<span class="number">10</span>));</span><br><span class="line">m.<span class="built_in">insert</span>(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(<span class="number">2</span>,<span class="number">20</span>));</span><br><span class="line">m.<span class="built_in">insert</span>(map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::<span class="built_in">value_type</span>(<span class="number">3</span>,<span class="number">30</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;m;m.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">1</span>,<span class="number">10</span>));m.<span class="built_in">insert</span>(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;(<span class="number">2</span>,<span class="number">20</span>));m.<span class="built_in">insert</span>(map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;::<span class="built_in">value_type</span>(<span class="number">3</span>,<span class="number">30</span>));</span><br></pre></td></tr></table></figure>
 
 
 
@@ -303,7 +313,7 @@
 <h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><ul>
 <li>函数对象在使用时，可以像普通函数一样调用，可以有参数，可以有返回值</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Myadd</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> v1,<span class="keyword">int</span> v2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> v1+v2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line">Myadd add;</span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建class Myadd&#123;public:    int operator()(int v1,int v2)    &#123;		return v1+v2;    &#125;&#125;;//调用Myadd add;add(1,2);</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -327,7 +337,7 @@
 </ul>
 <p>需要包含头文件<code>#include&lt;functional&gt;</code></p>
 <h4 id="算术仿函数"><a href="#算术仿函数" class="headerlink" title="算术仿函数"></a>算术仿函数</h4><p><code>negate</code>是一元运算，其他都是二元运算</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">negate&lt;<span class="keyword">int</span>&gt; neg;</span><br><span class="line"><span class="keyword">int</span> a=<span class="built_in">neg</span>(<span class="number">50</span>);  <span class="comment">//a的结果为-50</span></span><br><span class="line"></span><br><span class="line">plus&lt;<span class="keyword">int</span>&gt;p;</span><br><span class="line">a=<span class="built_in">p</span>(<span class="number">10</span>,<span class="number">20</span>);    <span class="comment">//a的结果为30</span></span><br><span class="line"></span><br><span class="line">minus&lt;<span class="keyword">int</span>&gt;m;</span><br><span class="line">a=<span class="built_in">m</span>(<span class="number">10</span>,<span class="number">20</span>);    <span class="comment">//a的结果为-10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">negate&lt;<span class="keyword">int</span>&gt; neg;<span class="keyword">int</span> a=<span class="built_in">neg</span>(<span class="number">50</span>);  <span class="comment">//a的结果为-50plus&lt;int&gt;p;a=p(10,20);    //a的结果为30minus&lt;int&gt;m;a=m(10,20);    //a的结果为-10</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -390,7 +400,7 @@
 </ul>
 <ul>
 <li><p><code>random_shuffle</code>         //随机打乱容器中元素的顺序</p>
-<p> <code>random_shuffle(iterator beg,iterator end);</code></p>
+<p><code>random_shuffle(iterator beg,iterator end);</code></p>
 <p>//如果要每次随机结果不同，需要加上随机数种子</p>
 </li>
 <li><p><code>merge</code>         //将两个容器元素合并，并存储到另一容器，但两个容器必须是有序的（等同于归并排序的merge过程）</p>
@@ -472,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/25/STL%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95/" data-id="cktzyeqnh0000uotp4ijcbl6i" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/25/STL%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95/" data-id="cktzyeqnh0000uotp4ijcbl6i" data-title="STL常用容器和算法" class="article-share-link">Share</a>
       
       
       
@@ -623,7 +633,7 @@
       <ul>
         
           <li>
-            <a href="/2021/09/25/STL%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95/">(no title)</a>
+            <a href="/2021/09/25/STL%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95/">STL常用容器和算法</a>
           </li>
         
           <li>
